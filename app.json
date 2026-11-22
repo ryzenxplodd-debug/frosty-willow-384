@@ -1,0 +1,31 @@
+{
+  "name": "raganork-bot",
+  "description": "Raganork MD WhatsApp bot, run as a Heroku worker dyno.",
+  "repository": "https://github.com/ryzenxplodd-debug/frosty-willow-384",
+  "stack": "container",
+  "env": {
+    "SESSION": {
+      "description": "Your Raganork session string (the value you used as SESSION on Render).",
+      "required": true
+    },
+    "USE_SERVER": {
+      "description": "A worker has no web port, so the bot's built-in HTTP server is switched off.",
+      "value": "false"
+    },
+    "DATABASE_SSL": {
+      "description": "Heroku Postgres requires SSL.",
+      "value": "true"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:essential-0"
+    }
+  ],
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  }
+}
